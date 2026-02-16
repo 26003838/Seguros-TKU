@@ -1,0 +1,16 @@
+ALGORITMO DEL PROCEDIMIENTO
+
+1. INICIO: Definir precio base en Q. 2,000.00.
+2. BUCLE: Iniciar ciclo de repetición.
+3. ENTRADA: Solicitar nombre del usuario.
+4. CONDICIÓN DE SALIDA: Si el nombre es "Salir", terminar el programa.
+5. VALIDACIÓN: Solicitar edad y verificar que sea mayor de 18 años.
+6. CÁLCULO ASEGURADO: Determinar rango de edad (18-24, 25-49, 50+) y sumar recargo (10%, 20%, 30%).
+7. CÓNYUGE: Si está casado, solicitar edad y aplicar recargo según rango.
+8. HIJOS: Si tiene hijos, multiplicar cantidad por el 20% del precio base.
+9. PROPIEDADES (Extra): Multiplicar cantidad de propiedades por el 35% del precio base.
+10. SALARIO (Extra): Calcular el 5% sobre el salario mensual ingresado.
+11. TOTALIZACIÓN: Sumar precio base + recargos acumulados.
+12. SALIDA: Mostrar nombre, recargos totales y precio final.
+13. REPETIR: Regresar al paso 3.
+14. FIN.

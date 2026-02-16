@@ -2,81 +2,96 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Cotizador de Seguros TK-U</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador Pro Seguros TK-U</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f9; }
-        .container { text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #2c3e50; color: white; }
+        .card { background: #ecf0f1; color: #2c3e50; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); text-align: center; max-width: 400px; }
+        button { background: #27ae60; color: white; border: none; padding: 12px 25px; font-size: 1.1rem; border-radius: 5px; cursor: pointer; transition: background 0.3s; }
+        button:hover { background: #2ecc71; }
+        h1 { color: #2980b9; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Cotizador Seguros TK-U</h1>
-    <p>Haz clic en el botón para iniciar la cotización</p>
-    <button onclick="iniciarCotizacion()">Nueva Cotización</button>
+<div class="card">
+    <h1>TK-U Seguros</h1>
+    <p>Presiona el botón para iniciar el sistema de cotización.</p>
+    <p><small>Escribe <strong>"Salir"</strong> en el nombre para finalizar.</small></p>
+    <button onclick="ejecutarCotizador()">Iniciar Cotización</button>
 </div>
 
 <script>
-function iniciarCotizacion() {
-    // 1. Variables Base
-    var precio_base = 2000;
-    var recargo_total = 0;
+function ejecutarCotizador() {
+    var continuar = true;
 
-    // 2. Captura de Datos
-    var nombre = prompt("Ingrese su nombre completo:");
-    var edad = prompt("Ingrese su edad:");
-    var edad_numero = parseInt(edad);
+    while (continuar) {
+        // 1. Nombre y condición de salida
+        var nombre = prompt("Ingrese su nombre completo\n(O escriba 'Salir' para terminar):");
 
-    // 3. Validación de Mayoría de Edad
-    if (edad_numero < 18) {
-        alert("Lo sentimos, " + nombre + ". Debe ser mayor de edad para cotizar.");
-        return; // Detiene el programa
-    }
-
-    // --- INCISO 1: Recargo por edad del asegurado ---
-    if (edad_numero >= 18 && edad_numero < 25) {
-        recargo_total += precio_base * 0.10;
-    } else if (edad_numero >= 25 && edad_numero < 50) {
-        recargo_total += precio_base * 0.20;
-    } else if (edad_numero >= 50) {
-        recargo_total += precio_base * 0.30;
-    }
-
-    // --- INCISO 2: Recargo por Cónyuge ---
-    var casado = prompt("¿Está casado/a actualmente? (SI/NO)");
-    if (casado && casado.toUpperCase() === "SI") {
-        var edad_conyuge = prompt("Ingrese la edad de su cónyuge:");
-        var edad_conyuge_num = parseInt(edad_conyuge);
-        
-        if (edad_conyuge_num >= 18 && edad_conyuge_num < 25) {
-            recargo_total += precio_base * 0.10;
-        } else if (edad_conyuge_num >= 25 && edad_conyuge_num < 50) {
-            recargo_total += precio_base * 0.20;
-        } else if (edad_conyuge_num >= 50) {
-            recargo_total += precio_base * 0.30;
+        if (!nombre || nombre.toUpperCase() === "SALIR") {
+            alert("Saliendo del sistema. ¡Que tenga un feliz día!");
+            continuar = false;
+            break;
         }
-    }
 
-    // --- INCISO 3: Recargo por Hijos ---
-    var tiene_hijos = prompt("¿Tiene hijos? (SI/NO)");
-    if (tiene_hijos && tiene_hijos.toUpperCase() === "SI") {
-        var cantidad_hijos = prompt("¿Cuántos hijos tiene?");
-        var cantidad_hijos_num = parseInt(cantidad_hijos);
-        
-        if (!isNaN(cantidad_hijos_num)) {
-            recargo_total += (precio_base * 0.20) * cantidad_hijos_num;
+        // 2. Variables iniciales
+        var precio_base = 2000;
+        var recargo_total = 0;
+
+        // 3. Edad del asegurado
+        var edad = prompt("¿Qué edad tiene?");
+        var edad_num = parseInt(edad);
+
+        if (isNaN(edad_num) || edad_num < 18) {
+            alert("Error: Debe ser mayor de edad (18+) para cotizar.");
+            continue; 
         }
+
+        // --- Recargos por Edad ---
+        if (edad_num >= 18 && edad_num < 25) recargo_total += precio_base * 0.10;
+        else if (edad_num >= 25 && edad_num < 50) recargo_total += precio_base * 0.20;
+        else if (edad_num >= 50) recargo_total += precio_base * 0.30;
+
+        // --- Recargo Cónyuge ---
+        var casado = prompt("¿Está casado/a? (si/no)");
+        if (casado && casado.toUpperCase() === "SI") {
+            var edad_conyuge = parseInt(prompt("¿Qué edad tiene su cónyuge?"));
+            if (edad_conyuge >= 18 && edad_conyuge < 25) recargo_total += precio_base * 0.10;
+            else if (edad_conyuge >= 25 && edad_conyuge < 50) recargo_total += precio_base * 0.20;
+            else if (edad_conyuge >= 50) recargo_total += precio_base * 0.30;
+        }
+
+        // --- Recargo Hijos ---
+        var hijos = prompt("¿Tiene hijos? (si/no)");
+        if (hijos && hijos.toUpperCase() === "SI") {
+            var cantidad_hijos = parseInt(prompt("¿Cuántos hijos tiene?"));
+            if (!isNaN(cantidad_hijos)) {
+                recargo_total += (precio_base * 0.20) * cantidad_hijos;
+            }
+        }
+
+        // --- PUNTOS EXTRA: Propiedades e Ingresos ---
+        var propiedades = parseInt(prompt("¿Cuántas propiedades tiene?"));
+        if (!isNaN(propiedades)) {
+            recargo_total += (precio_base * 0.35) * propiedades;
+        }
+
+        var salario = parseFloat(prompt("¿Cuál es su salario mensual?"));
+        if (!isNaN(salario)) {
+            recargo_total += (salario * 0.05);
+        }
+
+        // 4. Resultado Final
+        var precio_final = precio_base + recargo_total;
+
+        alert("RESUMEN PARA: " + nombre.toUpperCase() + 
+              "\n------------------------------" +
+              "\nPrecio Base: Q. 2,000" +
+              "\nTotal Recargos: Q. " + recargo_total.toFixed(2) +
+              "\n------------------------------" +
+              "\nPRECIO FINAL: Q. " + precio_final.toFixed(2));
     }
-
-    // 4. Resultado Final
-    var precio_final = precio_base + recargo_total;
-
-    alert("RESUMEN DE COTIZACIÓN\n" +
-          "---------------------------\n" +
-          "Nombre: " + nombre + "\n" +
-          "Recargo acumulado: Q." + recargo_total + "\n" +
-          "Precio total final: Q." + precio_final);
 }
 </script>
 

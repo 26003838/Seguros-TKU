@@ -1,0 +1,5 @@
+DESCRIPCIÓN DEL PROBLEMA - COTIZADOR TK-U
+
+La empresa de seguros TK-U, ubicada en la ciudad de Jedha, enfrenta un problema de eficiencia operativa. Actualmente, sus cotizaciones se realizan de forma manual, lo que limita su capacidad a un máximo de 50 cotizaciones diarias. Esta lentitud provoca la pérdida de clientes potenciales.
+
+El objetivo es automatizar este proceso mediante un programa que calcule el precio de la póliza basándose en un precio inicial de Q. 2,000.00. El sistema debe ser capaz de procesar múltiples cotizaciones en una sola sesión y aplicar recargos por edad (titular y cónyuge), número de hijos, cantidad de propiedades poseídas e ingresos mensuales del asegurado.
