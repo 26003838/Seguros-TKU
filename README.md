@@ -45,6 +45,23 @@ El flujo lógico del programa se ha diseñado de la siguiente manera:
 7.  **Consolidación:** `Precio_Final = Precio_Base + total_recargos`.
 8.  **Salida:** Mostrar resumen detallado y precio final.
 
+---
+
+## 🚀 Puntos Extra: Mejoras Implementadas
+* **Ciclo Continuo:** El programa ahora permite realizar múltiples cotizaciones seguidas. Se detiene únicamente cuando el usuario escribe la palabra **"Salir"**.
+* **Recargo por Propiedades:** Se añadió un cargo del 35% sobre el precio base por cada propiedad del asegurado.
+* **Recargo por Ingresos:** Se aplica un 5% extra calculado sobre el salario mensual del cliente.
+
+## 🧐 Consideraciones del Problema
+Para este desarrollo, fue crítico considerar:
+1. **Validaciones:** Que los ingresos y cantidades sean números válidos.
+2. **Acumulación:** Asegurar que los recargos de los puntos extra se sumen correctamente al total y no reemplacen los anteriores.
+
+## 💡 Propuestas de Mejora
+1. **Interfaz Gráfica:** Sustituir los `prompt()` y `alert()` por un formulario HTML con botones y campos de texto para mejorar la experiencia del usuario.
+2. **Persistencia de Datos:** Guardar las cotizaciones en una base de datos o un archivo para que la empresa pueda contactar a los clientes después.
+3. **Validación Robusta:** Implementar filtros para evitar que el usuario ingrese letras en campos donde se esperan números o sueldos negativos.
+
 
 
 ---
